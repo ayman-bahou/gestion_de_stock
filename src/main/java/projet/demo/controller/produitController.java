@@ -33,7 +33,7 @@ public class produitController {
     }
 
     @ResponseStatus(value=HttpStatus.CREATED)
-    @PostMapping(path="createprd",consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(path="create", consumes = APPLICATION_JSON_VALUE)
     public void creerProduit(@RequestBody Produit produit){
         this.produitService.creerProduit(produit);
     }

@@ -24,7 +24,11 @@ public class produitService {
     public void creerProduit(Produit produit){
         List<Produit> liste_produit = this.produitRepository.findByNom(produit.getNom());
         if (liste_produit.isEmpty()){
-            this.produitRepository.save(produit);
+            if (produit.getStock()<0 || produit.getPrixAchat()<0 || produit.getPrixVente()<0){
+                throw new IllegalArgumentException("les valeurs de stock, prix d'achat et prix de vente doivent être positifs");}
+                else{
+                    this.produitRepository.save(produit);
+                }
         }else{
             throw new DataIntegrityViolationException("il existe déjà un produit avec ce nom");
         }
