@@ -2,7 +2,7 @@ package projet.demo.entites;
 
 import java.time.LocalDateTime;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +19,8 @@ public class MouvementStock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quantite;
+    
+    @Column(name = "DATE", insertable = false, updatable = false)
     private LocalDateTime date;
     private TypeMouvement type;
     @ManyToOne

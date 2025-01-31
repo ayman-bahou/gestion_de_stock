@@ -10,8 +10,8 @@ CREATE TABLE PRODUIT(
 
 CREATE TABLE MOUVEMENT_STOCK(
     ID integer primary key not null AUTO_INCREMENT,
-    DATE datetime not null,
-    TYPE varchar(10),
+    DATE datetime DEFAULT CURRENT_TIMESTAMP,
+    TYPE ENUM('ENTREE', 'SORTIE') not null,
     QUANTITE integer not null,
     PRODUIT_ID integer not null,
     CONSTRAINT produit_fk FOREIGN KEY (PRODUIT_ID) REFERENCES PRODUIT(ID)
