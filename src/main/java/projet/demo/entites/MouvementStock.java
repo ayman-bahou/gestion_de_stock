@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,8 +22,11 @@ public class MouvementStock {
     private int id;
     private int quantite;
     
-    @Column(name = "DATE", insertable = false, updatable = false)
+    @Column(name = "DATE_MVT", insertable = false, updatable = false)
     private LocalDateTime date;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="TYP_MVT")
     private TypeMouvement type;
     @ManyToOne
     @JoinColumn(name="PRODUIT_ID")

@@ -1,24 +1,30 @@
 package projet.demo.service;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
-import projet.demo.dto.ProduitDTO;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
+import projet.demo.dto.ProduitDTO;
+import projet.demo.entites.MouvementStock;
 import projet.demo.entites.Produit;
+import projet.demo.mapper.ProduitDTOMapper;
+import projet.demo.repository.mouvementStockRepository;
 import projet.demo.repository.produitRepository;
 
 @Service
 public class produitService {
 
-    @SuppressWarnings("FieldMayBeFinal")
-    private produitRepository produitRepository;
+    
+    private final produitRepository produitRepository;
+    private final mouvementStockRepository mouvementStockRepository;
+    private final ProduitDTOMapper produitDTOMapper;
 
-    public produitService(produitRepository produitRepository){
+    public produitService(produitRepository produitRepository, mouvementStockRepository mouvementStockRepository, ProduitDTOMapper produitDTOMapper){
         this.produitRepository = produitRepository;
+        this.mouvementStockRepository = mouvementStockRepository;
+        this.produitDTOMapper=produitDTOMapper;
     }
 
     public void creerProduit(Produit produit){
@@ -36,26 +42,26 @@ public class produitService {
     }
 
     public Stream<ProduitDTO> listerProduits(){
-        return this.produitRepository.findAll().stream().map(produit -> new ProduitDTO(produit.getId(),produit.getNom(), produit.getPrixAchat(), produit.getStock()));
+        return this.produitRepository.findAll().stream().map(this.produitDTOMapper);
     }
 
     public ProduitDTO chercherProduit(int id){
-        Optional<Produit> optionalproduit = this.produitRepository.findById(id);
-        if (optionalproduit.isPresent()){
-            return new ProduitDTO(id, optionalproduit.get().getNom(), optionalproduit.get().getPrixVente(), optionalproduit.get().getStock());
-        }else{
-            throw new EntityNotFoundException("Aucun produit n'existe avec cet id");
+        Produit optionalproduit = this.produitRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Aucun produit n'existe avec cet id"));
+        return this.produitDTOMapper.apply(optionalproduit);
         }
-    }
+    
 
     public void supprimerProduit(int id){
         this.produitRepository.deleteById(id);
     }
 
     public void updateProduit(int id, Produit newproduit){
-        @SuppressWarnings("unused")
-        ProduitDTO produitBdd = this.chercherProduit(id);
-        this.creerProduit(new Produit(id,newproduit.getNom(),newproduit.getPrixAchat(), newproduit.getPrixVente(), newproduit.getStock()));
+        this.produitRepository.save(new Produit(id,newproduit.getNom(),newproduit.getPrixAchat(), newproduit.getPrixVente(), newproduit.getStock()));
     }
+
+    public List<MouvementStock> chercherMouvementStock(int id){
+        Produit produit = this.produitRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Aucun produit n'existe avec cet id"));
+        return this.mouvementStockRepository.findByProduit(produit);
     }
+}
 

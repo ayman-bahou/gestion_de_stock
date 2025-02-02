@@ -1,7 +1,10 @@
 package projet.demo.controller;
 
+import projet.demo.entites.MouvementStock;
 import projet.demo.entites.Produit;
 import projet.demo.service.produitService;
+
+import java.util.List;
 import java.util.stream.Stream;
 
 import projet.demo.dto.ProduitDTO;
@@ -25,8 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path="produit")
 public class produitController {
     
-    @SuppressWarnings("FieldMayBeFinal")
-    private produitService produitService;
+    private final produitService produitService;
 
     public produitController(produitService produitService) {
         this.produitService = produitService;
@@ -64,5 +66,9 @@ public class produitController {
         this.produitService.updateProduit(id,newproduit);
     }
     
-    
+    @ResponseStatus(value=HttpStatus.OK)
+    @GetMapping(path="get/historique/{id}",produces=APPLICATION_JSON_VALUE)
+    public List<MouvementStock> chercherMouvementStock(@PathVariable int id){
+        return this.produitService.chercherMouvementStock(id);
+    }
 }
