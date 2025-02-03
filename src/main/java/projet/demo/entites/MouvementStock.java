@@ -26,7 +26,7 @@ public class MouvementStock {
     private LocalDateTime date;
     
     @Enumerated(EnumType.STRING)
-    @Column(name="TYP_MVT")
+    @Column(name="TYPE_MVT")
     private TypeMouvement type;
     @ManyToOne
     @JoinColumn(name="PRODUIT_ID")

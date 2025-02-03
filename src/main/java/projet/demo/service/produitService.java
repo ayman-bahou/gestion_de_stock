@@ -6,9 +6,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
+import projet.demo.dto.MouvementStockDTO;
 import projet.demo.dto.ProduitDTO;
-import projet.demo.entites.MouvementStock;
 import projet.demo.entites.Produit;
+import projet.demo.mapper.MouvementStockDTOMapper;
 import projet.demo.mapper.ProduitDTOMapper;
 import projet.demo.repository.mouvementStockRepository;
 import projet.demo.repository.produitRepository;
@@ -20,11 +21,13 @@ public class produitService {
     private final produitRepository produitRepository;
     private final mouvementStockRepository mouvementStockRepository;
     private final ProduitDTOMapper produitDTOMapper;
+    private final MouvementStockDTOMapper mouvementStockDTOMapper;
 
-    public produitService(produitRepository produitRepository, mouvementStockRepository mouvementStockRepository, ProduitDTOMapper produitDTOMapper){
-        this.produitRepository = produitRepository;
+    public produitService(MouvementStockDTOMapper mouvementStockDTOMapper, mouvementStockRepository mouvementStockRepository, ProduitDTOMapper produitDTOMapper, produitRepository produitRepository) {
+        this.mouvementStockDTOMapper = mouvementStockDTOMapper;
         this.mouvementStockRepository = mouvementStockRepository;
-        this.produitDTOMapper=produitDTOMapper;
+        this.produitDTOMapper = produitDTOMapper;
+        this.produitRepository = produitRepository;
     }
 
     public void creerProduit(Produit produit){
@@ -59,9 +62,9 @@ public class produitService {
         this.produitRepository.save(new Produit(id,newproduit.getNom(),newproduit.getPrixAchat(), newproduit.getPrixVente(), newproduit.getStock()));
     }
 
-    public List<MouvementStock> chercherMouvementStock(int id){
+    public Stream<MouvementStockDTO> chercherMouvementStock(int id){
         Produit produit = this.produitRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Aucun produit n'existe avec cet id"));
-        return this.mouvementStockRepository.findByProduit(produit);
+        return this.mouvementStockRepository.findByProduit(produit).stream().map(mouvementStockDTOMapper);
     }
 }
 

@@ -1,12 +1,10 @@
 package projet.demo.controller;
 
-import projet.demo.entites.MouvementStock;
 import projet.demo.entites.Produit;
 import projet.demo.service.produitService;
-
-import java.util.List;
 import java.util.stream.Stream;
 
+import projet.demo.dto.MouvementStockDTO;
 import projet.demo.dto.ProduitDTO;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -68,7 +66,7 @@ public class produitController {
     
     @ResponseStatus(value=HttpStatus.OK)
     @GetMapping(path="get/historique/{id}",produces=APPLICATION_JSON_VALUE)
-    public List<MouvementStock> chercherMouvementStock(@PathVariable int id){
+    public Stream<MouvementStockDTO> chercherMouvementStock(@PathVariable int id){
         return this.produitService.chercherMouvementStock(id);
     }
 }
