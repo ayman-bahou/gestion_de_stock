@@ -5,10 +5,10 @@ import java.util.stream.Stream;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.EntityNotFoundException;
 import projet.demo.dto.MouvementStockDTO;
 import projet.demo.dto.ProduitDTO;
 import projet.demo.entites.Produit;
+import projet.demo.exceptions.ProduitInexistantException;
 import projet.demo.mapper.MouvementStockDTOMapper;
 import projet.demo.mapper.ProduitDTOMapper;
 import projet.demo.repository.mouvementStockRepository;
@@ -17,7 +17,6 @@ import projet.demo.repository.produitRepository;
 @Service
 public class produitService {
 
-    
     private final produitRepository produitRepository;
     private final mouvementStockRepository mouvementStockRepository;
     private final ProduitDTOMapper produitDTOMapper;
@@ -49,7 +48,7 @@ public class produitService {
     }
 
     public ProduitDTO chercherProduit(int id){
-        Produit optionalproduit = this.produitRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Aucun produit n'existe avec cet id"));
+        Produit optionalproduit = this.produitRepository.findById(id).orElseThrow(()->new ProduitInexistantException("Aucun produit n'existe avec cet id"));
         return this.produitDTOMapper.apply(optionalproduit);
         }
     
@@ -63,7 +62,7 @@ public class produitService {
     }
 
     public Stream<MouvementStockDTO> chercherMouvementStock(int id){
-        Produit produit = this.produitRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Aucun produit n'existe avec cet id"));
+        Produit produit = this.produitRepository.findById(id).orElseThrow(() -> new ProduitInexistantException("Aucun produit n'existe avec cet id"));
         return this.mouvementStockRepository.findByProduit(produit).stream().map(mouvementStockDTOMapper);
     }
 }
