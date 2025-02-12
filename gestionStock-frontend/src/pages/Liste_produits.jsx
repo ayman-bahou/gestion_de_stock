@@ -7,7 +7,7 @@ import {
 } from "../../node_modules/@heroicons/react/24/solid";
 
 function Liste_produits() {
-  const { produits, addProduit, supprimerProduit, error, loading } =
+  const { produits, addProduit, supprimerProduit, modifierProduit, error, loading } =
     useProduitcontext();
 
   return (
@@ -37,11 +37,11 @@ function Liste_produits() {
                   <td>{produit.stock}</td>
                   <td>{produit.prixVente}</td>
                   <div>
-                    <button className="flex items-center px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-                      {" "}
+                    <button className="flex items-center px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none" onClick={() => modifierProduit(produit.id)}>
+                      
                       <PencilIcon className="h-5 w-5 mr-1" />
-                    </button>{" "}
-                    <button className="flex items-center px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none">
+                    </button>
+                    <button className="flex items-center px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none" onClick={() => supprimerProduit(produit.id)}>
                       <TrashIcon className="h-5 w-5 mr-1" />
                     </button>
                   </div>

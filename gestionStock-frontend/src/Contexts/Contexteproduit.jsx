@@ -35,12 +35,18 @@ export const ProduitProvider = ({ children }) => {
     setProduits((prev) => [...prev, newproduit]);
   };
 
-  const supprimerProduit = (produit) => {};
+  const modifierProduit = (idProduit) => {
+    
+  }
+  const supprimerProduit = (idProduit) => {
+    setProduits(produits.filter((p)=>p.id != idProduit));
+  };
 
   const value = {
     produits,
     addProduit,
     supprimerProduit,
+    modifierProduit,
     loading,
     error
   };
