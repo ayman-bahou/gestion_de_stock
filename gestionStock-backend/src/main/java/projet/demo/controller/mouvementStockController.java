@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import projet.demo.entites.MouvementStock;
 
 @RestController
 @RequestMapping("/mouvementStock")
+@CrossOrigin(origins = "http://localhost:5173")
 public class mouvementStockController {
     @SuppressWarnings("FieldMayBeFinal")
     private mouvementStockService mouvementStockService;

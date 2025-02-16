@@ -45,6 +45,8 @@ function Nouveau_produit() {
             type="number"
             id="prixAchat"
             name="prixAchat"
+            min="0"
+            step="any"
             onChange={(e) =>
               setProduit({ ...produit, prixAchat: e.target.value })
             }
@@ -61,6 +63,8 @@ function Nouveau_produit() {
             type="number"
             id="prixVente"
             name="prixVente"
+            min="0"
+            step="any"
             onChange={(e) =>
               setProduit({ ...produit, prixVente: e.target.value })
             }
@@ -77,6 +81,7 @@ function Nouveau_produit() {
             type="number"
             id="stock"
             name="stock"
+            min="0"
             onChange={(e) => setProduit({ ...produit, stock: e.target.value })}
             placeholder="Quantité en stock"
             className="w-full border border-gray-300 p-2 rounded"

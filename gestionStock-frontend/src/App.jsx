@@ -4,6 +4,7 @@ import { ProduitProvider } from "./Contexts/Contexteproduit";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./composants/NavBar";
 import MouvementStock from "./pages/MouvementStock";
+import Nouveau_mouvement from "./pages/Nouveau_mouvement";
 function App() {
   return (
     <ProduitProvider>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Liste_produits />} />
           <Route path="/nouveauproduit" element={<Nouveau_produit />} />
           <Route path="/mouvement/:id" element={<MouvementStock />} />
+          <Route path="/nouveaumvt" element={<Nouveau_mouvement />} />
         </Routes>
       </main>
     </ProduitProvider>
