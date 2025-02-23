@@ -1,0 +1,28 @@
+<form class="container" (ngSubmit)="onSubmit()">
+    <h2>{{ title() }}</h2>
+    <div class="fields">
+      <mat-form-field>
+        <input [(ngModel)]="name" placeholder="Name" matInput name="name" />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          [(ngModel)]="email"
+          placeholder="Email"
+          matInput
+          name="email"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          [(ngModel)]="phone"
+          placeholder="Phone"
+          matInput
+          name="phone"
+        />
+      </mat-form-field>
+    </div>
+    <div class="actions">
+      <button mat-flat-button type="submit">Save</button>
+      <button type="button" mat-raised-button routerLink="/">Cancel</button>
+    </div>
+  </form>
