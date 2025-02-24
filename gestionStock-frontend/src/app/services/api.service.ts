@@ -12,11 +12,15 @@ export class ProduitService {
     return lastValueFrom(this.http.get<Produit[]>(this.apiUrl+"/get/all"));
   }
 
-  async deleteProduit(id : number) : Promise<void> {
+  async getProduitByid(id : string) : Promise<Produit>{
+    return lastValueFrom(this.http.get<Produit>(this.apiUrl+`/get/${id}`));
+  }
+
+  async deleteProduit(id : string) : Promise<void> {
     await lastValueFrom(this.http.delete<void>(`${this.apiUrl}/delete/${id}`));
 
   }
-  async updateProduit(id : number, newProduit : Produit) : Promise<void>{
+  async updateProduit(id : string, newProduit : Produit) : Promise<void>{
     await lastValueFrom(this.http.put<void>(`${this.apiUrl}/update/${id}`,newProduit))
   }
   

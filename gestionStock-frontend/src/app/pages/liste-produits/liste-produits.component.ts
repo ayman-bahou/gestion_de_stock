@@ -20,11 +20,11 @@ export class ListeProduitsComponent {
     () => this.deleting() || this.produitsRessource.isLoading()
   );
 
-  async deleteProduit(id: number): Promise<void> {
+  async deleteProduit(id: string): Promise<void> {
     await this.apiService.deleteProduit(id);
     this.produitsRessource.reload();
   }
-  async updateProduit(id: number, newProduit : Produit): Promise<void> {
+  async updateProduit(id: string, newProduit : Produit): Promise<void> {
     await this.apiService.updateProduit(id,newProduit);
     this.produitsRessource.reload();
   }
