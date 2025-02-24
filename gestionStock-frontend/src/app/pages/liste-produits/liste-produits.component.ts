@@ -3,10 +3,11 @@ import { ProduitService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Produit } from '../../model/produit.model';
-
-@Component({
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';@Component({
   selector: 'app-liste-produits',
-  imports: [CommonModule, MatProgressSpinnerModule],
+  imports: [CommonModule, MatProgressSpinnerModule,RouterLink,MatButtonModule,MatIconModule],
   templateUrl: './liste-produits.component.html',
   styleUrl: './liste-produits.component.css',
 })

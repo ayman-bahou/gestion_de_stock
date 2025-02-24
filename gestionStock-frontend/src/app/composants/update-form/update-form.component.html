@@ -2,22 +2,24 @@
     <h2>{{ title() }}</h2>
     <div class="fields">
       <mat-form-field>
-        <input [(ngModel)]="name" placeholder="Name" matInput name="name" />
+        <input [(ngModel)]="nom" placeholder="Name" matInput name="name" required />
       </mat-form-field>
       <mat-form-field>
         <input
-          [(ngModel)]="email"
-          placeholder="Email"
+          [(ngModel)]="prixVente"
+          placeholder="prixVente"
           matInput
-          name="email"
+          name="prixVente"
+          required
         />
       </mat-form-field>
       <mat-form-field>
         <input
-          [(ngModel)]="phone"
-          placeholder="Phone"
+          [(ngModel)]="stock"
+          placeholder="stock"
           matInput
-          name="phone"
+          name="stock"
+          required
         />
       </mat-form-field>
     </div>

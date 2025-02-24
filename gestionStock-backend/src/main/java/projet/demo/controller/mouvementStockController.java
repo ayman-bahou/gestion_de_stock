@@ -18,7 +18,7 @@ import projet.demo.entites.MouvementStock;
 
 @RestController
 @RequestMapping("/mouvementStock")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:4200")
 public class mouvementStockController {
     @SuppressWarnings("FieldMayBeFinal")
     private mouvementStockService mouvementStockService;
