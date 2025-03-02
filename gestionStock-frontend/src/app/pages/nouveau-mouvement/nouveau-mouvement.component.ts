@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-nouveau-mouvement',
   imports: [],
-  templateUrl: './nouveau-mouvement.component.html',
+  template: '',
   styleUrl: './nouveau-mouvement.component.css'
 })
 export class NouveauMouvementComponent {
-
+  
 }

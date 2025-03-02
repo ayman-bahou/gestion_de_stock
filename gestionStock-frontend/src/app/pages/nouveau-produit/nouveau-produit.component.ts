@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UpdateFormComponent } from '../../composants/update-form/update-form.component';
+import { Produit } from '../../model/produit.model';
+import { ProduitService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nouveau-produit',
-  imports: [],
-  templateUrl: './nouveau-produit.component.html',
-  styleUrl: './nouveau-produit.component.css'
+  imports: [UpdateFormComponent],
+  template:
+    '<app-update-form title="Nouveau Produit" (save)=ajouterProduit($event)/>',
+  styleUrl: './nouveau-produit.component.css',
 })
 export class NouveauProduitComponent {
+  router = inject(Router);
 
+  apiService = inject(ProduitService);
+  ajouterProduit(newProduit: Produit) {
+    this.apiService.addProduit(newProduit);
+    this.router.navigate(['/']);
+  }
 }

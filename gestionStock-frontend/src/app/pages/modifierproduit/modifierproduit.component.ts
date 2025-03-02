@@ -3,7 +3,6 @@ import { UpdateFormComponent } from '../../composants/update-form/update-form.co
 import { ProduitService } from '../../services/api.service';
 import { Produit } from '../../model/produit.model';
 import { Router } from '@angular/router';
-import { routes } from '../../app.routes';
 
 @Component({
   selector: 'app-modifierproduit',

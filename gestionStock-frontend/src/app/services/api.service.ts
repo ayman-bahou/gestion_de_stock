@@ -23,5 +23,9 @@ export class ProduitService {
   async updateProduit(id : string, newProduit : Produit) : Promise<void>{
     await lastValueFrom(this.http.put<void>(`${this.apiUrl}/update/${id}`,newProduit))
   }
+
+  async addProduit(newProduit : Produit) : Promise<void>{
+    await lastValueFrom(this.http.post<void>(`${this.apiUrl}/create`,newProduit))
+  }
   
 }
