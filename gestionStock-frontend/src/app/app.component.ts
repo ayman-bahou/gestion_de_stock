@@ -4,11 +4,10 @@ import { HeaderComponent } from './composants/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HeaderComponent],
-  template: `<app-header/>
-  <router-outlet/>`,
+  imports: [RouterOutlet, HeaderComponent],
+  template: `<app-header /> <router-outlet />`,
 
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'gestionStock-frontend';

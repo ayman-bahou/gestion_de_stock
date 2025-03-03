@@ -1,1 +1,25 @@
-<p>nouveau-mouvement works!</p>
+<form class="container" (ngSubmit)="onSubmit()">
+    <h2>{{ title() }}</h2>
+    <div class="fields">
+      <mat-form-field>
+        <mat-select [(ngModel)]="type" placeholder="Type" name="type" required>
+          <mat-option value="ENTREE">ENTREE</mat-option>
+          <mat-option value="SORTIE">SORTIE</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          [(ngModel)]="quantite"
+          placeholder="quantite"
+          matInput
+          name="quantite"
+          required
+        />
+      </mat-form-field>
+      
+    </div>
+    <div class="actions">
+      <button mat-flat-button type="submit">Add mouvement</button>
+      <button type="button" mat-raised-button routerLink="/">Cancel</button>
+    </div>
+  </form>

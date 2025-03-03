@@ -4,20 +4,22 @@ import { NouveauProduitComponent } from './pages/nouveau-produit/nouveau-produit
 import { NouveauMouvementComponent } from './pages/nouveau-mouvement/nouveau-mouvement.component';
 import { ModifierproduitComponent } from './pages/modifierproduit/modifierproduit.component';
 
-export const routes: Routes = [{
-    path : '',
-    pathMatch : 'full',
-    component : ListeProduitsComponent
-},
-{
-    path : 'nouveauproduit',
-    component : NouveauProduitComponent
-},
-{
-    path : 'nouveaumouvement',
-    component : NouveauMouvementComponent
-},
-{
-    path : 'modifier/:id',
-    component : ModifierproduitComponent
-}];
+export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: ListeProduitsComponent,
+  },
+  {
+    path: 'nouveauproduit',
+    component: NouveauProduitComponent,
+  },
+  {
+    path: 'nouveaumouvement',
+    component: NouveauMouvementComponent,
+  },
+  {
+    path: 'modifier/:id',
+    component: ModifierproduitComponent,
+  },
+];
