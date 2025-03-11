@@ -1,12 +1,15 @@
 <div class="affichage_produits">
   <div class="table-container">
     <div class="text-center">
-      <h1 >
+      <h1>
         Liste des Produits
       </h1>
     </div>
 
-    <table class="custom-table">
+    <!-- Affichage du spinner si isLoading est true -->
+    <mat-progress-spinner *ngIf="produitsRessource.isLoading()" mode="indeterminate" diameter="50"></mat-progress-spinner>
+
+    <table class="custom-table" *ngIf="!produitsRessource.isLoading()">
       <thead>
         <tr>
           <th>ID</th>
@@ -28,6 +31,9 @@
             </button>
             <button mat-icon-button (click)="deleteProduit(produit.id)">
               <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button [routerLink]="['/consulter',produit.id]">
+              <mat-icon>visibility</mat-icon>
             </button>
           </td>
         </tr>

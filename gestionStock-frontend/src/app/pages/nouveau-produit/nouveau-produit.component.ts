@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UpdateFormComponent } from '../../composants/update-form/update-form.component';
 import { Produit } from '../../model/produit.model';
-import { ProduitService } from '../../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class NouveauProduitComponent {
   router = inject(Router);
 
-  apiService = inject(ProduitService);
+  apiService = inject(ApiService);
   ajouterProduit(newProduit: Produit) {
     this.apiService.addProduit(newProduit);
     this.router.navigate(['/']);

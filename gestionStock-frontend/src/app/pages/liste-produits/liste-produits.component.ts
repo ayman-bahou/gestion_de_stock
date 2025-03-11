@@ -21,11 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 export class ListeProduitsComponent {
   apiService = inject(ApiService);
   produitsRessource = resource({ loader: () => this.apiService.getProduits() });
-  deleting = signal(false);
-
-  loading = computed(
-    () => this.deleting() || this.produitsRessource.isLoading()
-  );
 
   async deleteProduit(id: string): Promise<void> {
     await this.apiService.deleteProduit(id);

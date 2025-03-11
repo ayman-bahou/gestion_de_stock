@@ -1,0 +1,31 @@
+<div class="affichage_produits">
+    <div class="table-container">
+      <div class="text-center">
+        <h1 >
+          Liste des Produits
+        </h1>
+      </div>
+  
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>DATE</th>
+            <th>Quantité</th>
+            <th>TYPE</th>
+            <th>PRODUIT_ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mvt of MvtRessource.value()">
+            <td>{{mvt.id}}</td>
+            <td>{{ mvt.date | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+            <td>{{mvt.quantite}}</td>
+            <td>{{mvt.type}}</td>
+            <td>{{mvt.produit.id}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

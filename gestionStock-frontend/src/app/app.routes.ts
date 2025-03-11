@@ -3,6 +3,7 @@ import { ListeProduitsComponent } from './pages/liste-produits/liste-produits.co
 import { NouveauProduitComponent } from './pages/nouveau-produit/nouveau-produit.component';
 import { NouveauMouvementComponent } from './pages/nouveau-mouvement/nouveau-mouvement.component';
 import { ModifierproduitComponent } from './pages/modifierproduit/modifierproduit.component';
+import { ConsulterMouvementComponent } from './pages/consulter-mouvement/consulter-mouvement.component';
 
 export const routes: Routes = [
   {
@@ -22,4 +23,8 @@ export const routes: Routes = [
     path: 'modifier/:id',
     component: ModifierproduitComponent,
   },
+  {
+    path : 'consulter/:id',
+    component : ConsulterMouvementComponent
+  }
 ];

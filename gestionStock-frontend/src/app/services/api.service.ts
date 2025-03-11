@@ -8,7 +8,7 @@ import { Mouvement } from '../model/mouvement.model';
 export class ApiService {
   private http = inject(HttpClient);
   private apiUrlProduit = 'http://localhost:8080/produit';
-  private apiUrlMvt = 'http://localhost:8080/produit';
+  private apiUrlMvt = 'http://localhost:8080/mouvementStock';
 
   async getProduits(): Promise<Produit[]> {
     return lastValueFrom(
@@ -39,9 +39,16 @@ export class ApiService {
     );
   }
 
-  async addMvt(newMvt: Mouvement) {
+
+  async addMvt(newMvt: Object) {
     await lastValueFrom(
       this.http.post<void>(`${this.apiUrlMvt}/create`, newMvt)
     );
+  }
+  async getMvt(id : string){
+    console.log(id)
+    return lastValueFrom(
+      this.http.get<Mouvement []>(`${this.apiUrlProduit}/get/historique/${id}`)
+    )
   }
 }
